@@ -1,0 +1,33 @@
+<script>
+	$(function() {
+		var $channelList = $('#channel_list');
+		var channelPath = 'channels/';
+		$.ajax({
+			url: channelPath,
+			method: 'GET'
+		}).then(function(response) {
+			response.forEach(function(channel) {
+				var $div = $('<a>');
+				$div.html(channel.name);
+				$div.attr("href", channelPath + channel.id);
+				$channelList.append($div);
+				$channelList.append('<br>');
+			});
+		});
+	
+	});
+
+</script>
+
+
+
+Channels
+<div id = "channel_list">
+
+
+</div>
+
+<div id = "channelView">
+
+
+</div>

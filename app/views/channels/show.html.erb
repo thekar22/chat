@@ -1,0 +1,55 @@
+<script>
+	var channelId = <%= @channel.id %>;
+
+	$(function() {
+		var $messageList = $('#all_messages');
+		var $sendButton = $('#send_button');
+		var $inputText = $('#message_box');
+
+		$sendButton.on('click', function() {
+			console.log('send button clicked');
+		})
+
+		$('#message_box').on('keypress', function (e) {
+			if (e.which == 13) {
+				console.log($inputText.val());
+				messageService.send($inputText.val());
+			return false;
+			}
+		});
+	
+	});
+
+	var messageService = (function() {
+		var send = function(msg) {
+			return $.ajax({
+				url: '/messages',
+				method: 'POST',
+				data: {
+					channel_id: channelId,
+					message: msg
+				}
+			});
+		}
+
+		return {send: send};
+	})();
+
+</script>
+
+<h1> <%= @channel.name %> </h1>
+<h2> <%= @user.email %></h2>
+<div class="all_messages">
+
+	<% @messages.each do |message| %>
+
+		<div class = "message">
+			<span> <%=message.text%> </span>
+			<span> <%=message.date%> </span>
+		</div>
+	<% end %>
+
+</div>
+
+<input id="message_box" type="text" name="mesage">
+<input id="send_button" type="submit" value="send">
