@@ -7,15 +7,17 @@
 		var $inputText = $('#message_box');
 
 		$sendButton.on('click', function() {
-			console.log('send button clicked');
+			messageService.send($inputText.val());
+			location.reload();
 		})
 
 		$('#message_box').on('keypress', function (e) {
 			if (e.which == 13) {
-				console.log($inputText.val());
 				messageService.send($inputText.val());
+				location.reload();
 			return false;
 			}
+
 		});
 	
 	});
@@ -31,6 +33,8 @@
 				}
 			});
 		}
+
+
 
 		return {send: send};
 	})();
@@ -51,5 +55,7 @@
 
 </div>
 
-<input id="message_box" type="text" name="mesage">
-<input id="send_button" type="submit" value="send">
+<form>
+	<input id="message_box" type="text" name="mesage">
+	<input id="send_button" type="submit" value="send">
+</form>
