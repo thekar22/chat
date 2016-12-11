@@ -26,6 +26,7 @@ gem 'rake', '<11'
 gem 'devise'
 gem 'rspec-rails'
 gem 'pry'
+gem 'rails_12factor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
